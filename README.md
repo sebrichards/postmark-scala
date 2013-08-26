@@ -40,7 +40,7 @@ val message = PostmarkMessage(
   // Optional attachments
   Attachments = List(
     Attachment("Text File.txt", "text/plain", Base64.encodeBase64String("Hello world".getBytes)),
-    Attachment(new java.io.File("picture.jpg"))
+    Attachment(new File("picture.jpg"))
   ),
 
   // Optional Postmark fields
