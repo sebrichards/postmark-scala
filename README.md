@@ -16,7 +16,9 @@ The PostmarkClient is simple enough to use:
 import com.postmark.scala.Attachment
 import com.postmark.scala.NameValueMap
 import com.postmark.scala.PostmarkClient
+import com.postmark.scala.PostmarkError
 import com.postmark.scala.PostmarkMessage
+import com.postmark.scala.PostmarkSuccess
 
 import java.io.File
 
@@ -52,7 +54,7 @@ val message = PostmarkMessage(
 
 )
 
-val result = client.send(message)
+val result: Either[PostmarkError, PostmarkSuccess] = client.send(message)
 
 client.destroy
 ```
