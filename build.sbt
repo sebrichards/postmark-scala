@@ -4,7 +4,7 @@ description := "Scala binding for the Postmark API"
 
 version := "1.0"
 
-organization := "com.postmark"
+organization := "com.postmark.scala"
 
 scalaVersion := "2.10.0"
 
