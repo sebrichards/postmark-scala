@@ -24,7 +24,7 @@ class PostmarkAutoRetryClient(
     def retryRequest(res: HttpResponse, executionCount: Int, ctx: HttpContext): Boolean = {
 
       val validResponse = res.getStatusLine.getStatusCode match {
-        // Expect 200, 401, 422
+        // Accept 200, 401, 422
         case 200 | 401 | 422 => true
         case _ => false
       } 
@@ -41,7 +41,7 @@ class PostmarkAutoRetryClient(
 
   }
 
-  // Overide client
+  // Override client
   override protected val client = new AutoRetryHttpClient(retryStrategy)
 
 }
