@@ -1,4 +1,4 @@
-package com.postmark.scala
+package com.github.sebrichards.postmark
 
 import org.joda.time.DateTime
 

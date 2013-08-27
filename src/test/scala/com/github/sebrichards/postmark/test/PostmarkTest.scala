@@ -1,8 +1,8 @@
-package com.postmark.scala.test
+package com.github.sebrichards.postmark.test
 
 import org.specs2.mutable._
 
-import com.postmark.scala._
+import com.github.sebrichards.postmark._
 
 import org.apache.commons.codec.binary.Base64
 

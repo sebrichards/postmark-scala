@@ -1,4 +1,4 @@
-package com.postmark.scala
+package com.github.sebrichards.postmark
 
 /** Details of a failed e-mail attempt */
 case class PostmarkError (

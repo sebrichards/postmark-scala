@@ -1,4 +1,4 @@
-package com.postmark.scala.util
+package com.github.sebrichards.postmark.util
 
 import org.json4s._
 

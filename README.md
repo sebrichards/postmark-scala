@@ -13,10 +13,10 @@ Usage
 The PostmarkClient is simple enough to use:
 
 ```scala
-import com.postmark.scala.Attachment
-import com.postmark.scala.NameValueMap
-import com.postmark.scala.PostmarkClient
-import com.postmark.scala.PostmarkMessage
+import com.github.sebrichards.postmark.Attachment
+import com.github.sebrichards.postmark.NameValueMap
+import com.github.sebrichards.postmark.PostmarkClient
+import com.github.sebrichards.postmark.PostmarkMessage
 
 import java.io.File
 

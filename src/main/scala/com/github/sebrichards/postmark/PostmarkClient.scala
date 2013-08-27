@@ -1,17 +1,17 @@
-package com.postmark.scala
+package com.github.sebrichards.postmark
 
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
-import org.apache.http.util.EntityUtils
 import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.util.EntityUtils
 
 import org.json4s._
 import org.json4s.jackson.Serialization
 
 import org.slf4j.LoggerFactory
 
-import com.postmark.scala.util.DateTimeSerializer
+import com.github.sebrichards.postmark.util.DateTimeSerializer
 
 /**
  * A client for Postmark.

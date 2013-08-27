@@ -1,4 +1,4 @@
-package com.postmark.scala
+package com.github.sebrichards.postmark
 
 /** Name/value pair */
 case class NameValueMap (
