@@ -79,4 +79,4 @@ The client expects the following HTTP codes from Postmark: 200, 401, 422 and 500
 * For 500, a `PostmarkError` is created using the response body.
 
 Note that when using the `PostmarkAutoRetryClient`, responses with 401/422 are accepted as valid, thus the request will not be re-attempted.
-Only responses with 500 are deemed worth of a retry. If this isn't suitable for you, you can easily extend PostmarkClient with your own approach.
+Only responses with 500 are deemed worthy of a retry. If this isn't suitable for you, you can easily extend PostmarkClient with your own approach.
