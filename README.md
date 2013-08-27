@@ -16,7 +16,9 @@ The PostmarkClient is simple enough to use:
 import com.github.sebrichards.postmark.Attachment
 import com.github.sebrichards.postmark.NameValueMap
 import com.github.sebrichards.postmark.PostmarkClient
+import com.github.sebrichards.postmark.PostmarkError
 import com.github.sebrichards.postmark.PostmarkMessage
+import com.github.sebrichards.postmark.PostmarkSuccess
 
 import java.io.File
 
@@ -40,7 +42,7 @@ val message = PostmarkMessage(
   // Optional attachments
   Attachments = List(
     Attachment("Text File.txt", "text/plain", Base64.encodeBase64String("Hello world".getBytes)),
-    Attachment(new java.io.File("picture.jpg"))
+    Attachment(new File("picture.jpg"))
   ),
 
   // Optional Postmark fields
@@ -52,7 +54,7 @@ val message = PostmarkMessage(
 
 )
 
-val result = client.send(message)
+val result: Either[PostmarkError, PostmarkSuccess] = client.send(message)
 
 client.destroy
 ```
