@@ -36,3 +36,33 @@ libraryDependencies <++= (scalaVersion) { (v) =>
   }
   Seq(specs2)
 }
+
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+publishTo <<= version { (v: String) =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
+
+licenses := Seq("MIT" -> url("http://seb.mit-license.org/license.txt"))
+
+homepage := Some(url("https://github.com/sebrichards/postmark-scala"))
+
+pomExtra := (
+  <scm>
+    <url>https://github.com/sebrichards/postmark-scala</url>
+    <connection>scm:git:git://github.com/sebrichards/postmark-scala.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>sebrichards</id>
+      <name>Seb Richards</name>
+      <url>https://github.com/sebrichards</url>
+    </developer>
+  </developers>
+)
