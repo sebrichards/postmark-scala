@@ -12,14 +12,29 @@ class PostmarkTest extends Specification {
     To = "Recipient <receipient@domain.com>",
     From = "Postmark Sender <test@domain.com>",
     Subject = "Test E-Mail",
-    HtmlBody = "<p>Hello world</p>"
+    HtmlBody = Some("<p>Hello world</p>")
+  )
+
+  val validTextMessage = PostmarkMessage(
+    To = "Recipient <receipient@domain.com>",
+    From = "Postmark Sender <test@domain.com>",
+    Subject = "Test E-Mail",
+    TextBody = Some("Hello world")
+  )
+
+  val validMultipartMessage = PostmarkMessage(
+    To = "Recipient <receipient@domain.com>",
+    From = "Postmark Sender <test@domain.com>",
+    Subject = "Test E-Mail",
+    TextBody = Some("Hello world"),
+    HtmlBody = Some("<p>Hello world</p>")
   )
 
   val invalidMessage = PostmarkMessage(
     To = "invalid",
     From = "invalid",
     Subject = "Test E-Mail",
-    HtmlBody = "<p>Hello World</p>"
+    HtmlBody = Some("<p>Hello World</p>")
   )
 
   "An incorrect API key" should {
@@ -52,4 +67,23 @@ class PostmarkTest extends Specification {
     }
   }
 
+  "Valid text-only setup" should {
+    "succeed" in {
+      val client = new PostmarkClient("POSTMARK_API_TEST")
+      val response = client.send(validTextMessage)
+      client.destroy
+
+      response must beRight
+    }
+  }
+
+  "Valid multipart setup" should {
+    "succeed" in {
+      val client = new PostmarkClient("POSTMARK_API_TEST")
+      val response = client.send(validMultipartMessage)
+      client.destroy
+
+      response must beRight
+    }
+  }
 }
