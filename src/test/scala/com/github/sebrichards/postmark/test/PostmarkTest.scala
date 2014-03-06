@@ -38,12 +38,12 @@ class PostmarkTest extends Specification {
   )
 
   "An incorrect API key" should {
-    "return error code 0" in {
+    "return error code 10" in {
       val client = new PostmarkClient("INVALID_API_KEY")
       val response = client.send(validMessage)
       client.destroy
 
-      response.left.map(_.ErrorCode) must beLeft(0)
+      response.left.map(_.ErrorCode) must beLeft(10)
     }
   }
 
