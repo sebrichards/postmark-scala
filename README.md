@@ -33,7 +33,8 @@ val message = PostmarkMessage(
   // Required fields
   To = "Recipient <receipient@domain.com>",
   From = "Postmark Sender <sender@domain.com>",
-  Subject = Some("Test E-Mail"),
+  Subject = "Test E-Mail",
+  TextBody = Some("Hello world"),
   HtmlBody = Some("<p>Hello world</p>"),
 
   // Optional mail fields
