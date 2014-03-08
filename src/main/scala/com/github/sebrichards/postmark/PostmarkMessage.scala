@@ -13,7 +13,8 @@ case class PostmarkMessage (
   From: String,
   To: String,
   Subject: String,
-  HtmlBody: String,
+  HtmlBody: Option[String] = None,
+  TextBody: Option[String] = None,
 
   // Mail extras
   Cc: Option[String] = None,
