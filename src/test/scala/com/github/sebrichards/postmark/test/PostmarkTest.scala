@@ -8,29 +8,25 @@ import org.apache.commons.codec.binary.Base64
 
 class PostmarkTest extends Specification {
 
-  val validMessage = PostmarkMessage(
+  val validBase = PostmarkMessage(
     To = "Recipient <receipient@domain.com>",
     From = "Postmark Sender <test@domain.com>",
-    Subject = "Test E-Mail",
+    Subject = "Test E-Mail")
+
+  val validHtmlMessage = validBase.copy(
     HtmlBody = Some("<p>Hello world</p>")
   )
 
-  val validTextMessage = PostmarkMessage(
-    To = "Recipient <receipient@domain.com>",
-    From = "Postmark Sender <test@domain.com>",
-    Subject = "Test E-Mail",
+  val validTextMessage = validBase.copy(
     TextBody = Some("Hello world")
   )
 
-  val validMultipartMessage = PostmarkMessage(
-    To = "Recipient <receipient@domain.com>",
-    From = "Postmark Sender <test@domain.com>",
-    Subject = "Test E-Mail",
+  val validMultipartMessage = validBase.copy(
     TextBody = Some("Hello world"),
     HtmlBody = Some("<p>Hello world</p>")
   )
 
-  val invalidMessage = PostmarkMessage(
+  val invalidEmailAddress = PostmarkMessage(
     To = "invalid",
     From = "invalid",
     Subject = "Test E-Mail",
@@ -40,34 +36,24 @@ class PostmarkTest extends Specification {
   "An incorrect API key" should {
     "return error code 10" in {
       val client = new PostmarkClient("INVALID_API_KEY")
-      val response = client.send(validMessage)
+      val response = client.send(validMultipartMessage)
       client.destroy
 
       response.left.map(_.ErrorCode) must beLeft(10)
     }
   }
 
-  "An invalid e-mail address" should {
-    "return error code 300" in {
-      val client = new PostmarkClient("POSTMARK_API_TEST")
-      val response = client.send(invalidMessage)
-      client.destroy
-
-      response.left.map(_.ErrorCode) must beLeft(300)
-    }
-  }
-
-  "Valid setup" should {
+  "A HTML-only message" should {
     "succeed" in {
       val client = new PostmarkClient("POSTMARK_API_TEST")
-      val response = client.send(validMessage)
+      val response = client.send(validHtmlMessage)
       client.destroy
 
       response must beRight
     }
   }
 
-  "Valid text-only setup" should {
+  "A text-only message" should {
     "succeed" in {
       val client = new PostmarkClient("POSTMARK_API_TEST")
       val response = client.send(validTextMessage)
@@ -77,13 +63,33 @@ class PostmarkTest extends Specification {
     }
   }
 
-  "Valid multipart setup" should {
+  "A multipart message" should {
     "succeed" in {
       val client = new PostmarkClient("POSTMARK_API_TEST")
       val response = client.send(validMultipartMessage)
       client.destroy
 
       response must beRight
+    }
+  }
+
+  "An invalid e-mail address" should {
+    "return error code 300" in {
+      val client = new PostmarkClient("POSTMARK_API_TEST")
+      val response = client.send(invalidEmailAddress)
+      client.destroy
+
+      response.left.map(_.ErrorCode) must beLeft(300)
+    }
+  }
+
+  "A missing body part" should {
+    "return error code 300" in {
+      val client = new PostmarkClient("POSTMARK_API_TEST")
+      val response = client.send(validBase)
+      client.destroy
+
+      response.left.map(_.ErrorCode) must beLeft(300)
     }
   }
 }
