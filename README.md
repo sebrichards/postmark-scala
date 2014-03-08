@@ -1,17 +1,15 @@
-README
-======
+# postmark-scala
 
 This library provides a scala interface to the [Postmark](http://postmarkapp.com) API.
 
 Inspiration has been taken from https://github.com/jaredholdcroft/postmark-java, so thanks to Jared for that.
 
-Usage
------
+## Usage
 
 Add the dependency to SBT:
 
 ```scala
-libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.0"
+libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.1"
 ```
 
 The PostmarkClient is simple enough to use:
@@ -35,8 +33,8 @@ val message = PostmarkMessage(
   // Required fields
   To = "Recipient <receipient@domain.com>",
   From = "Postmark Sender <sender@domain.com>",
-  Subject = "Test E-Mail",
-  HtmlBody = "<p>Hello world</p>",
+  Subject = Some("Test E-Mail"),
+  HtmlBody = Some("<p>Hello world</p>"),
 
   // Optional mail fields
   Cc = Some("Another Recipient <another.recipient@domain.com>"),
@@ -73,8 +71,7 @@ Some additional points:
 * You need to add your own flavour of SLF4J implementation as a dependency.
 * If you're finished using the Postmark client, call the `destroy` method before dereferencing it.
 
-Postmark Responses
-------------------
+## Postmark Responses
 
 The client expects the following HTTP codes from Postmark: 200, 401, 422 and 500.
 
