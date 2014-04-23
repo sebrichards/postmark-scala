@@ -8,9 +8,7 @@ organization := "com.github.sebrichards"
 
 scalaVersion := "2.10.0"
 
-crossScalaVersions := Seq(
-  "2.9.0", "2.9.0-1","2.9.1", "2.9.1-1", "2.9.2", "2.9.3",
-  "2.10.0")
+crossScalaVersions := Seq("2.10.0")
 
 libraryDependencies ++= Seq(
   // Commons
@@ -23,19 +21,10 @@ libraryDependencies ++= Seq(
   "joda-time" % "joda-time" % "2.3",
   "org.joda" % "joda-convert" % "1.4",
   // Logging
-  "org.slf4j" % "slf4j-api" % "1.7.5"
+  "org.slf4j" % "slf4j-api" % "1.7.5",
+  // Testing
+  "org.specs2" %% "specs2" % "2.1.1" % "test"
 )
-
-// Version specific dependencies
-libraryDependencies <++= (scalaVersion) { (v) =>
- val specs2 = v match {
-    case "2.9.0" | "2.9.0-1" => "org.specs2" % "specs2_2.9.0" % "1.12.4" % "test"
-    case "2.9.1" | "2.9.1-1" => "org.specs2" %% "specs2" % "1.12.4" % "test"
-    case "2.9.2" | "2.9.3" => "org.specs2" %% "specs2" % "1.12.4.1" % "test"
-    case v if v.startsWith("2.10") => "org.specs2" %% "specs2" % "2.1.1" % "test"
-  }
-  Seq(specs2)
-}
 
 publishMavenStyle := true
 
