@@ -6,24 +6,24 @@ version := "1.1.1"
 
 organization := "com.github.sebrichards"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.11.0"
 
-crossScalaVersions := Seq("2.10.0")
+crossScalaVersions := Seq("2.10.0", "2.11.0")
 
 libraryDependencies ++= Seq(
   // Commons
   "org.apache.httpcomponents" % "httpclient" % "4.2.5",
   "commons-io" % "commons-io" % "2.2",
   // JSON
-  "org.json4s" %% "json4s-core" % "3.2.5",
-  "org.json4s" %% "json4s-jackson" % "3.2.5",
+  "org.json4s" %% "json4s-core" % "3.2.9",
+  "org.json4s" %% "json4s-jackson" % "3.2.9",
   // Joda
   "joda-time" % "joda-time" % "2.3",
   "org.joda" % "joda-convert" % "1.4",
   // Logging
   "org.slf4j" % "slf4j-api" % "1.7.5",
   // Testing
-  "org.specs2" %% "specs2" % "2.1.1" % "test"
+  "org.specs2" %% "specs2" % "2.3.11" % "test"
 )
 
 publishMavenStyle := true
