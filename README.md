@@ -4,12 +4,14 @@ This library provides a scala interface to the [Postmark](http://postmarkapp.com
 
 Inspiration has been taken from https://github.com/jaredholdcroft/postmark-java, so thanks to Jared for that.
 
+Please note that support for Scala 2.9.x was dropped at version 1.1.1.
+
 ## Usage
 
 Add the dependency to SBT:
 
 ```scala
-libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.1"
+libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.1.1"
 ```
 
 The PostmarkClient is simple enough to use:
