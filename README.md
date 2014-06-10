@@ -55,7 +55,8 @@ val message = PostmarkMessage(
   Headers = List(
     NameValueMap("key", "value"),
     NameValueMap("key2", "value2")
-  )
+  ),
+  TrackOpens = true
 
 )
 

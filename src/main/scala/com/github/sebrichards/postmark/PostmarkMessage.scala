@@ -24,6 +24,7 @@ case class PostmarkMessage (
 
   // Special
   Tag: Option[String] = None,
-  Headers: List[NameValueMap] = Nil
+  Headers: List[NameValueMap] = Nil,
+  TrackOpens: Boolean = false
 
 )
