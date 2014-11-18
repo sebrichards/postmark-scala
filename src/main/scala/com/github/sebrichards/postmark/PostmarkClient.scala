@@ -12,6 +12,7 @@ import org.json4s.jackson.Serialization
 import org.slf4j.LoggerFactory
 
 import com.github.sebrichards.postmark.util.DateTimeSerializer
+import java.nio.charset.StandardCharsets
 
 /**
  * A client for Postmark.
@@ -41,7 +42,7 @@ class PostmarkClient(serverToken: String) {
 
     // Add message
     val messageJson = Serialization.write(message)
-    httpPost.setEntity(new StringEntity(messageJson))
+    httpPost.setEntity(new StringEntity(messageJson, StandardCharsets.UTF_8))
 
     // Execute
     val httpResponse = client.execute(httpPost)
