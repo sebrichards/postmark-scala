@@ -1,5 +1,7 @@
 package com.github.sebrichards.postmark
 
+import java.nio.charset.StandardCharsets
+
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
@@ -12,11 +14,10 @@ import org.json4s.jackson.Serialization
 import org.slf4j.LoggerFactory
 
 import com.github.sebrichards.postmark.util.DateTimeSerializer
-import java.nio.charset.StandardCharsets
 
 /**
  * A client for Postmark.
- * 
+ *
  * @param serverToken The API key
  */
 class PostmarkClient(serverToken: String) {
