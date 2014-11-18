@@ -1,3 +1,7 @@
+# 1.1.3
+
+* Fixed UTF-8 support
+
 # 1.1.2
 
 * Added 'TrackOpens' parameter
