@@ -11,7 +11,7 @@ Please note that support for Scala 2.9.x was dropped at version 1.1.1.
 Add the dependency to SBT:
 
 ```scala
-libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.1.3"
+libraryDependencies += "com.github.sebrichards" %% "postmark-scala" % "1.2"
 ```
 
 The PostmarkClient is simple enough to use:
