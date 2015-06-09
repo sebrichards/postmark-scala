@@ -2,7 +2,8 @@ package com.github.sebrichards.postmark
 
 import org.apache.http.HttpResponse
 import org.apache.http.client.ServiceUnavailableRetryStrategy
-import org.apache.http.impl.client.AutoRetryHttpClient
+import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.protocol.HttpContext
 
 /**
@@ -42,6 +43,9 @@ class PostmarkAutoRetryClient(
   }
 
   // Override client
-  override protected val client = new AutoRetryHttpClient(retryStrategy)
-
+  override protected val client =
+    HttpClientBuilder.
+    create().
+    setServiceUnavailableRetryStrategy(retryStrategy).
+    build()
 }

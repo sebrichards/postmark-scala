@@ -2,11 +2,11 @@ package com.github.sebrichards.postmark
 
 import java.nio.charset.StandardCharsets
 
-import org.apache.http.client.HttpClient
-import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
-import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.HttpResponse
+import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.util.EntityUtils
 
 import org.json4s.Formats
@@ -31,7 +31,7 @@ class PostmarkClient(serverToken: String) {
 
   private implicit val formats: Formats = Serialization.formats(NoTypeHints) + DateTimeSerializer
 
-  protected val client: HttpClient = new DefaultHttpClient
+  protected val client: CloseableHttpClient = HttpClientBuilder.create().build()
 
   /** Send an e-mail */
   def send(message: PostmarkMessage): Either[PostmarkError, PostmarkSuccess] = {
@@ -91,7 +91,7 @@ class PostmarkClient(serverToken: String) {
 
   /** Clean up resources */
   def destroy {
-    client.getConnectionManager.shutdown
+    client.close()
   }
 
 }
