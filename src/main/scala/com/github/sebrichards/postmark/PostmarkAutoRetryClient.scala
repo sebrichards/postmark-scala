@@ -7,7 +7,7 @@ import org.apache.http.protocol.HttpContext
 
 /**
  * A client for Postmark, with automatic retry.
- * 
+ *
  * @param serverToken The API key
  * @param retryInterval Milliseconds between each retry
  * @param maxRetries Number of retries to make
@@ -23,13 +23,13 @@ class PostmarkAutoRetryClient(
 
     def retryRequest(res: HttpResponse, executionCount: Int, ctx: HttpContext): Boolean = {
 
-      val validResponse = res.getStatusLine.getStatusCode match {
+      val validResponse: Boolean = res.getStatusLine.getStatusCode match {
         // Accept 200, 401, 422
         case 200 | 401 | 422 => true
         case _ => false
-      } 
+      }
 
-      val retry = !validResponse && executionCount <= maxRetries
+      val retry: Boolean = !validResponse && executionCount <= maxRetries
 
       if (retry)
         logger.warn("Attempt failed " + executionCount + " time(s), will retry in " + retryInterval + "ms.")

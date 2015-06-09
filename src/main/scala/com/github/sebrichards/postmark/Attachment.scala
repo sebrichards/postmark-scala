@@ -29,14 +29,14 @@ object Attachment {
   /** Create an attachment from a file */
   def apply(file: File) = {
 
-    val filename = file.getName
+    val filename: String = file.getName
 
-    val contentType = 
+    val contentType: String =
       Option(URLConnection.guessContentTypeFromName(filename)).
       getOrElse("application/octet-stream")
 
-    val bytes = FileUtils.readFileToByteArray(file)
-    val bytesString = Base64.encodeBase64String(bytes)
+    val bytes: Array[Byte] = FileUtils.readFileToByteArray(file)
+    val bytesString: String = Base64.encodeBase64String(bytes)
 
     new Attachment(filename, contentType, bytesString)
   }

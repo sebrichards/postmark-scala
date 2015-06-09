@@ -3,14 +3,17 @@ package com.github.sebrichards.postmark
 import java.nio.charset.StandardCharsets
 
 import org.apache.http.client.HttpClient
+import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
 
-import org.json4s._
-import org.json4s.jackson.Serialization
+import org.json4s.Formats
+import org.json4s.NoTypeHints
+import org.json4s.native.Serialization
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 import com.github.sebrichards.postmark.util.DateTimeSerializer
@@ -22,11 +25,11 @@ import com.github.sebrichards.postmark.util.DateTimeSerializer
  */
 class PostmarkClient(serverToken: String) {
 
-  protected val logger = LoggerFactory.getLogger(getClass)
+  protected val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  private val postUrl = "http://api.postmarkapp.com/email"
+  private val postUrl: String = "http://api.postmarkapp.com/email"
 
-  private implicit val formats = Serialization.formats(NoTypeHints) + DateTimeSerializer
+  private implicit val formats: Formats = Serialization.formats(NoTypeHints) + DateTimeSerializer
 
   protected val client: HttpClient = new DefaultHttpClient
 
@@ -42,24 +45,24 @@ class PostmarkClient(serverToken: String) {
     httpPost.addHeader("X-Postmark-Server-Token", serverToken)
 
     // Add message
-    val messageJson = Serialization.write(message)
+    val messageJson: String = Serialization.write(message)
     httpPost.setEntity(new StringEntity(messageJson, StandardCharsets.UTF_8))
 
     // Execute
-    val httpResponse = client.execute(httpPost)
+    val httpResponse: HttpResponse = client.execute(httpPost)
 
     // Get HTTP status code
-    val statusCode = httpResponse.getStatusLine.getStatusCode
+    val statusCode: Int = httpResponse.getStatusLine.getStatusCode
 
     // Read body as string
-    val responseBody = EntityUtils.toString(httpResponse.getEntity)
+    val responseBody: String = EntityUtils.toString(httpResponse.getEntity)
 
     // Process
     statusCode match {
 
       // OK
       case 200 => {
-        val success = Serialization.read[PostmarkSuccess](responseBody)
+        val success: PostmarkSuccess = Serialization.read[PostmarkSuccess](responseBody)
 
         logger.info("Sent e-mail to " + message.To + " [" + success.MessageID + "]")
 
@@ -68,7 +71,7 @@ class PostmarkClient(serverToken: String) {
 
       // Unauthorized / Unprocessable Entity
       case 401 | 422 => {
-        val error = Serialization.read[PostmarkError](responseBody)
+        val error: PostmarkError = Serialization.read[PostmarkError](responseBody)
 
         logger.error("Unable to send e-mail to " + message.To + " - (" + error.ErrorCode + ") " + error.Message)
 
