@@ -27,7 +27,7 @@ class PostmarkClient(serverToken: String) {
 
   protected val logger: Logger = LoggerFactory.getLogger(getClass)
 
-  private val postUrl: String = "http://api.postmarkapp.com/email"
+  private val postUrl: String = "https://api.postmarkapp.com/email"
 
   private implicit val formats: Formats = Serialization.formats(NoTypeHints) + DateTimeSerializer
 
