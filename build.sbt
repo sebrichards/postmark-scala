@@ -1,3 +1,5 @@
+// ------------------------ Project info ------------------------
+
 name := "postmark-scala"
 
 description := "Scala binding for the Postmark API"
@@ -6,25 +8,38 @@ version := "1.2"
 
 organization := "com.github.sebrichards"
 
+// ------------------------ Compiler settings ------------------------
+
 scalaVersion := "2.11.0"
 
 crossScalaVersions := Seq("2.10.0", "2.11.0")
 
+scalacOptions ++= Seq("-feature", "-deprecation")
+
+// ------------------------ Dependencies ------------------------
+
+resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+
 libraryDependencies ++= Seq(
+
   // Commons
-  "org.apache.httpcomponents" % "httpclient" % "4.2.5",
-  "commons-io" % "commons-io" % "2.2",
+  "org.apache.httpcomponents" % "httpclient" % "4.5",
+  "commons-io" % "commons-io" % "2.4",
+
   // JSON
-  "org.json4s" %% "json4s-core" % "3.2.9",
-  "org.json4s" %% "json4s-jackson" % "3.2.9",
+  "org.json4s" %% "json4s-native" % "3.2.11",
+
   // Joda
-  "joda-time" % "joda-time" % "2.3",
-  "org.joda" % "joda-convert" % "1.4",
+  "joda-time" % "joda-time" % "2.8",
+  "org.joda" % "joda-convert" % "1.7",
+
   // Logging
-  "org.slf4j" % "slf4j-api" % "1.7.5",
+  "org.slf4j" % "slf4j-api" % "1.7.12",
+
   // Testing
-  "org.specs2" %% "specs2" % "2.3.11" % "test"
-)
+  "org.specs2" %% "specs2" % "2.4.17" % "test")
+
+// ------------------------ Publishing ------------------------
 
 publishMavenStyle := true
 
