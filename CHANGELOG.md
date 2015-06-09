@@ -1,3 +1,8 @@
+# 1.2
+
+* Updated dependencies
+* Use HTTPS endpoint for Postmark
+
 # 1.1.3
 
 * Fixed UTF-8 support
