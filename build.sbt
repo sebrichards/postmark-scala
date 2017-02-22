@@ -4,7 +4,7 @@ name := "postmark-scala"
 
 description := "Scala binding for the Postmark API"
 
-version := "1.2"
+version := "1.3"
 
 organization := "com.github.sebrichards"
 
