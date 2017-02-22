@@ -1,4 +1,4 @@
-# 1.3.0
+# 1.3
 
 * Updated dependencies
 * Add support for Scala 2.12
