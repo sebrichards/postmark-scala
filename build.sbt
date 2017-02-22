@@ -37,7 +37,8 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % "1.7.23",
 
   // Testing
-  "org.specs2" %% "specs2-core" % "3.8.8" % "test")
+  "org.specs2" %% "specs2-core" % "3.8.8" % "test",
+  "org.slf4j" % "slf4j-nop" % "1.7.23" % "test")
 
 // ------------------------ Publishing ------------------------
 
