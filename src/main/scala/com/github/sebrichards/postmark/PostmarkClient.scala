@@ -90,7 +90,7 @@ class PostmarkClient(serverToken: String) {
   }
 
   /** Clean up resources */
-  def destroy {
+  def destroy: Unit = {
     client.close()
   }
 
