@@ -43,7 +43,7 @@ class PostmarkAutoRetryClient(
   }
 
   // Override client
-  override protected val client =
+  override protected val client: CloseableHttpClient =
     HttpClientBuilder.
     create().
     setServiceUnavailableRetryStrategy(retryStrategy).

@@ -1,7 +1,6 @@
 package com.github.sebrichards.postmark
 
 /** Name/value pair */
-case class NameValueMap (
+case class NameValueMap(
   Name: String,
-  Value: String
-)
+  Value: String)

@@ -14,24 +14,20 @@ class PostmarkTest extends Specification {
     Subject = "Test E-Mail")
 
   val validHtmlMessage = validBase.copy(
-    HtmlBody = Some("<p>Hello world</p>")
-  )
+    HtmlBody = Some("<p>Hello world</p>"))
 
   val validTextMessage = validBase.copy(
-    TextBody = Some("Hello world")
-  )
+    TextBody = Some("Hello world"))
 
   val validMultipartMessage = validBase.copy(
     TextBody = Some("Hello world"),
-    HtmlBody = Some("<p>Hello world</p>")
-  )
+    HtmlBody = Some("<p>Hello world</p>"))
 
   val invalidEmailAddress = PostmarkMessage(
     To = "invalid",
     From = "invalid",
     Subject = "Test E-Mail",
-    HtmlBody = Some("<p>Hello World</p>")
-  )
+    HtmlBody = Some("<p>Hello World</p>"))
 
   "An incorrect API key" should {
     "return error code 10" in {

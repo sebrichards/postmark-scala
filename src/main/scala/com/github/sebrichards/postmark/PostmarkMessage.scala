@@ -7,7 +7,7 @@ package com.github.sebrichards.postmark
  *   - name@domain.com
  *   - <Name> name@domain.com
  */
-case class PostmarkMessage (
+case class PostmarkMessage(
 
   // Core
   From: String,
@@ -25,6 +25,4 @@ case class PostmarkMessage (
   // Special
   Tag: Option[String] = None,
   Headers: List[NameValueMap] = Nil,
-  TrackOpens: Boolean = false
-
-)
+  TrackOpens: Boolean = false)

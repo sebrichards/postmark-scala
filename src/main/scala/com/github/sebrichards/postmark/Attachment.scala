@@ -20,9 +20,7 @@ case class Attachment(
   Content: String,
 
   /** ID, for inline images */
-  ContentID: Option[String] = None
-
-)
+  ContentID: Option[String] = None)
 
 object Attachment {
 
